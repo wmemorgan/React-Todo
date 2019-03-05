@@ -1,10 +1,11 @@
 import React from 'react'
+import './ToDo.css'
 
 function ToDo(props) {
-  const { task } = props.task
+  const { task, completed } = props.task
 
   return (
-    <div className="task-card">
+    <div className={completed === true ? 'todo completed':'todo'}>
       {task}
     </div>
   )
