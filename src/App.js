@@ -12,7 +12,7 @@ const taskList = [
   {
     task: 'Bake Cookies',
     id: 1528817084358,
-    completed: false
+    completed: true
   }  
 ]
 
@@ -25,14 +25,21 @@ class App extends React.Component {
       id: '',
       completed: false
     }
-    console.log(this.state.taskList)
+
+  }
+
+  clearCompletedTask = e => {
+    e.preventDefault()
+    let clearedList = this.state.taskList.filter(task => task.completed === false)
+    console.log(clearedList)
+    this.setState({taskList: [...clearedList]})
   }
 
   render() {
     return (
       <div className="App">
         <ToDoList tasks={this.state.taskList}/> 
-        <ToDoForm /> 
+        <ToDoForm onClearCompletedTasks={this.clearCompletedTask}/> 
       </div>
     );
   }

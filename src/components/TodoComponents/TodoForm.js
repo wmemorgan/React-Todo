@@ -1,12 +1,13 @@
 import React from 'react'
 
-function ToDoForm(props) {
+const ToDoForm = (props) => {
+  const { onClearCompletedTasks } = props
   return (
     <div className="todo-form">
       <form>
         <input name="todo"/>
-        <button>Add Todo</button>
-        <button>Clear Completed</button>
+        <button className="btn btn-add">Add Todo</button>
+        <button className="btn btn-clear" onClick={onClearCompletedTasks}>Clear Completed</button>
       </form>
     </div>
   )
