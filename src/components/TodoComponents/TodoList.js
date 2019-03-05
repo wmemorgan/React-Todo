@@ -1,6 +1,6 @@
 import React from 'react'
 
-import ToDo from './ToDo'
+import ToDo from './Todo'
 
 function ToDoList(props) {
   const { tasks } = props

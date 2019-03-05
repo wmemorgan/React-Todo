@@ -1,5 +1,5 @@
 import React from 'react'
-import './ToDo.css'
+import './Todo.css'
 
 function ToDo(props) {
   const { task, completed } = props.task

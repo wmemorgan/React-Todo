@@ -1,7 +1,7 @@
 import React from 'react';
 
-import ToDoList from './components/ToDoComponents/ToDoList'
-import ToDoForm from './components/ToDoComponents/ToDoForm'
+import ToDoList from './components/ToDoComponents/TodoList'
+import ToDoForm from './components/ToDoComponents/TodoForm'
 
 const taskList = [
   {
