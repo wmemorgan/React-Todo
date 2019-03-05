@@ -27,13 +27,15 @@ class App extends React.Component {
       inputValue: ''
     }
 
+    //Add data to localStorage
     localStorage.setItem('newTask', '')
     console.log(`Initial localStorage.newTask from parent: ${JSON.stringify(localStorage.newTask)}`)
+    localStorage.setItem('taskList', taskList.map(task=>JSON.stringify(task)))
+    console.log(`Initial localStorage.taskList from parent:`, localStorage.taskList)
   }
 
   inputChange = e => {
     e.preventDefault()
-    console.log(e.target.value)
     this.setState({
       inputValue: e.target.value
     }, () => {
@@ -56,8 +58,9 @@ class App extends React.Component {
         inputValue: ''
       }
     })
-    console.log(`updated tasklist:`, this.state.taskList)
-    localStorage.setItem('taskList', this.state.taskList)
+
+    // localStorage.setItem('taskList', this.state.taskList.map(task => JSON.stringify(task)))
+    // console.log(`updated localStorage.taskList from parent:`, localStorage.taskList)
   }
 
   clearCompletedTask = e => {
