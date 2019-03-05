@@ -23,32 +23,41 @@ class App extends React.Component {
       taskList,
       task: '',
       id: '',
-      completed: false
+      completed: false,
+      inputValue: ''
     }
 
+    localStorage.setItem('newTask', '')
+    console.log(`Initial localStorage.newTask from parent: ${JSON.stringify(localStorage.newTask)}`)
   }
 
-  inputHandler = e => {
+  inputChange = e => {
     e.preventDefault()
     console.log(e.target.value)
-    return e.target.value
+    this.setState({
+      inputValue: e.target.value
+    }, () => {
+      localStorage.setItem('newTask', this.state.inputValue)
+    })
   }
 
   addTask = e => {
     e.preventDefault()
-    let newInput = this.inputHandler(e)
-    console.log(`input value: ${newInput}`)
+    console.log(`localStorage from parent: ${localStorage.newTask}`)
     let newTask = {
-      task: newInput,
+      task: localStorage.newTask,
       id: new Date(),
       completed: false
     }
 
     this.setState(prevState => {
       return {
-        taskList: [...prevState.taskList, newTask]
+        taskList: [...prevState.taskList, newTask],
+        inputValue: ''
       }
     })
+    console.log(`updated tasklist:`, this.state.taskList)
+    localStorage.setItem('taskList', this.state.taskList)
   }
 
   clearCompletedTask = e => {
@@ -61,9 +70,10 @@ class App extends React.Component {
     return (
       <div className="App">
         <ToDoList tasks={this.state.taskList}/> 
-        <ToDoForm 
-          onInputChange={this.inputHandler}
-          onAddTask={this.addTask} 
+        <ToDoForm
+          value={this.state.inputValue}
+          onInputChange={this.inputChange}
+          onAddTask={this.addTask}
           onClearCompletedTasks={this.clearCompletedTask}
         /> 
       </div>
