@@ -28,10 +28,32 @@ class App extends React.Component {
 
   }
 
+  inputHandler = e => {
+    e.preventDefault()
+    console.log(e.target.value)
+    return e.target.value
+  }
+
+  addTask = e => {
+    e.preventDefault()
+    let newInput = this.inputHandler(e)
+    console.log(`input value: ${newInput}`)
+    let newTask = {
+      task: newInput,
+      id: new Date(),
+      completed: false
+    }
+
+    this.setState(prevState => {
+      return {
+        taskList: [...prevState.taskList, newTask]
+      }
+    })
+  }
+
   clearCompletedTask = e => {
     e.preventDefault()
     let clearedList = this.state.taskList.filter(task => task.completed === false)
-    console.log(clearedList)
     this.setState({taskList: [...clearedList]})
   }
 
@@ -39,7 +61,11 @@ class App extends React.Component {
     return (
       <div className="App">
         <ToDoList tasks={this.state.taskList}/> 
-        <ToDoForm onClearCompletedTasks={this.clearCompletedTask}/> 
+        <ToDoForm 
+          onInputChange={this.inputHandler}
+          onAddTask={this.addTask} 
+          onClearCompletedTasks={this.clearCompletedTask}
+        /> 
       </div>
     );
   }
