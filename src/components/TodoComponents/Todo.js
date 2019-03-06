@@ -1,11 +1,17 @@
 import React from 'react'
+import classNames from 'classnames'
 import './Todo.css'
 
 const ToDo = (props) => {
   const { toggleComplete } = props 
-  const { task, id, completed } = props.task
+  const { task, id, completed, filtered } = props.task
+  var todoClassGroup = classNames({
+    todo: true,
+    completed: completed,
+    filtered: filtered
+  });
   return (
-    <div className={completed === true ? 'todo completed' : 'todo'} onClick={() => toggleComplete(id)}>
+    <div className={todoClassGroup} onClick={() => toggleComplete(id)}>
       {task}
     </div>
   )
