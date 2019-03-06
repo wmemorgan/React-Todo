@@ -3,61 +3,49 @@ import React from 'react';
 import ToDoList from './components/TodoComponents/TodoList'
 import ToDoForm from './components/TodoComponents/TodoForm'
 
-// const taskList = [
-//   {
-//     task: 'Organize Garage',
-//     id: 1528817077286,
-//     completed: false
-//   },
-//   {
-//     task: 'Bake Cookies',
-//     id: 1528817084358,
-//     completed: true
-//   }  
-// ]
+const taskList = [
+  {
+    task: 'Organize Garage',
+    id: 1528817077286,
+    completed: false
+  },
+  {
+    task: 'Bake Cookies',
+    id: 1528817084358,
+    completed: true
+  }
+]
 
 class App extends React.Component {
   constructor() {
     super()
+    //Initialize localStorage
+    localStorage.setItem('taskList', JSON.stringify(taskList))
+    console.log(`Initial localStorage.taskList from parent:`, JSON.parse(localStorage.taskList))
+    //Initialize state
     this.state = {
-      taskList : [
-        {
-          task: 'Organize Garage',
-          id: 1528817077286,
-          completed: false
-        },
-        {
-          task: 'Bake Cookies',
-          id: 1528817084358,
-          completed: true
-        }
-      ],
+      taskList: JSON.parse(localStorage.taskList),
       inputValue: ''
     }
-    //this.todoElement = React.createRef()
+    console.log('Intial state: ', this.state)
 
-    //Add data to localStorage
-    // localStorage.setItem('newTask', '')
-    // console.log(`Initial localStorage.newTask from parent: ${JSON.stringify(localStorage.newTask)}`)
-    localStorage.setItem('taskList', this.state.taskList.map(task=>JSON.stringify(task)))
-    console.log(`Initial localStorage.taskList from parent:`, localStorage.taskList)
+    //this.todoElement = React.createRef() -> Future release
   }
 
   inputChange = e => {
     e.preventDefault()
     this.setState({
       inputValue: e.target.value
-    }, () => {
-      console.log('The latest inputValue: ',this.state.inputValue)
-      // localStorage.setItem('newTask', this.state.inputValue)
     })
   }
 
   addTask = e => {
     e.preventDefault()
+    let date = new Date()
+    let timestamp = date.getTime()
     let newTask = {
       task: this.state.inputValue,
-      id: new Date(),
+      id: timestamp,
       completed: false
     }
 
@@ -66,10 +54,12 @@ class App extends React.Component {
         taskList: [...prevState.taskList, newTask],
         inputValue: ''
       }
-    })
-
-    // localStorage.setItem('taskList', this.state.taskList.map(task => JSON.stringify(task)))
-    // console.log(`updated localStorage.taskList from parent:`, localStorage.taskList)
+    },
+      () => {
+        localStorage.setItem('taskList', JSON.stringify(this.state.taskList))
+        console.log(`updated localStorage.taskList from parent:`, JSON.parse(localStorage.taskList))
+      }
+    )
   }
 
   toggleComplete = (id) => {
@@ -84,8 +74,6 @@ class App extends React.Component {
     let clearedList = this.state.taskList.filter(task => task.completed === false)
     this.setState({taskList: [...clearedList]})
   }
-
-
 
   render() {
     return (
