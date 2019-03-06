@@ -11,9 +11,9 @@ const ToDo = (props) => {
     filtered: filtered
   });
   return (
-    <div className={todoClassGroup} onClick={() => toggleComplete(id)}>
+    <li className={todoClassGroup} onClick={() => toggleComplete(id)}>
       {task}
-    </div>
+    </li>
   )
 }
 
