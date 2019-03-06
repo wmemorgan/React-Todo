@@ -7,12 +7,14 @@ const taskList = [
   {
     task: 'Organize Garage',
     id: 1528817077286,
-    completed: false
+    completed: false,
+    filtered: false
   },
   {
     task: 'Bake Cookies',
     id: 1528817084358,
-    completed: true
+    completed: true,
+    filtered: false
   }
 ]
 
@@ -25,12 +27,13 @@ class App extends React.Component {
     //Initialize state
     this.state = {
       taskList: JSON.parse(localStorage.taskList),
-      inputValue: ''
+      inputValue: '',
+      search: ''
     }
     console.log('Intial state: ', this.state)
   }
 
-  inputChange = e => {
+  enterTask = e => {
     e.preventDefault()
     this.setState({
       inputValue: e.target.value
@@ -44,13 +47,14 @@ class App extends React.Component {
     let newTask = {
       task: this.state.inputValue,
       id: timestamp,
-      completed: false
+      completed: false,
+      filtered: false
     }
 
     this.setState(prevState => {
       return {
         taskList: [...prevState.taskList, newTask],
-        inputValue: ''
+        inputValue: '',
       }
     },
       () => {
@@ -76,15 +80,30 @@ class App extends React.Component {
     this.setState({taskList: [...clearedList]})
   }
 
+  searchTask = e => {
+    e.preventDefault()
+    let searchString = e.target.value.toLowerCase()
+    console.log(`e.target.value: `, searchString)
+    let filteredTaskList = this.state.taskList.filter(task => task.task.toLowerCase().includes(searchString))
+    console.log(`search value before: `, this.state.search)
+    this.setState({
+      taskList: filteredTaskList,
+      search: searchString
+    })
+    console.log(`search value after: `, this.state.search)
+  }
+
   render() {
     return (
       <div className="App">
         <ToDoList tasks={this.state.taskList} toggleComplete={this.toggleComplete}/> 
         <ToDoForm
-          value={this.state.inputValue}
-          onInputChange={this.inputChange}
-          onAddTask={this.addTask}
-          onClearCompletedTasks={this.clearCompletedTask}
+          inputValue={this.state.inputValue}
+          enterTask={this.enterTask}
+          addTask={this.addTask}
+          clearCompletedTasks={this.clearCompletedTask}
+          search={this.state.search}
+          searchTask={this.searchTask}
         /> 
       </div>
     );
