@@ -1,4 +1,18 @@
-/* Montserrat & Lato */
+/* States */
+.completed {
+  text-decoration: line-through;
+  color: red;
+}
+
+.filtered {
+  display: none;
+}
+
+/* Global element styles */
+.btn {
+  cursor: pointer;
+}
+
 .App {
   width: 90%;
   max-width: 1000px;
@@ -11,14 +25,31 @@
   background: var(--container-bg-color);
 }
 
-.completed {
-  text-decoration: line-through;
+.todo-list {
+  /* width: 100%; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0;
+  padding: 10px;
 }
 
-.filtered {
-  display: none;
+.todo-list h2 {
+  font-size: 1.6rem;
+  font-weight: bold;
 }
 
-.btn {
-  cursor: pointer;
+.todo-list-container {
+  list-style-type: decimal;
 }
+
+.todo {
+  font-size: 1rem;
+  margin: 5px 10px;
+}
+
+/* .todo:nth-child(2n) {
+  background: var(--light-primary-color);
+} */
+
+
