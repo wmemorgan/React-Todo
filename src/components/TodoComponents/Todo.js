@@ -5,7 +5,7 @@ import './Todo.css'
 const ToDo = (props) => {
   const { toggleComplete } = props 
   const { task, id, completed, filtered } = props.task
-  var todoClassGroup = classNames({
+  const todoClassGroup = classNames({
     todo: true,
     completed: completed,
     filtered: filtered
