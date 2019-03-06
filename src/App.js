@@ -28,8 +28,6 @@ class App extends React.Component {
       inputValue: ''
     }
     console.log('Intial state: ', this.state)
-
-    //this.todoElement = React.createRef() -> Future release
   }
 
   inputChange = e => {
@@ -63,10 +61,13 @@ class App extends React.Component {
   }
 
   toggleComplete = (id) => {
-    console.log(id)
-    // this.setState(prevState => {
-    //   return { completed: prevState.completed === false ? true : false }
-    // })
+    let updateTaskList = this.state.taskList.map(task => {
+      if (task.id === id ) {
+        task.completed = task.completed === false ? true : false
+      }
+      return task
+    })
+    this.setState({taskList: updateTaskList})
   }
 
   clearCompletedTask = e => {
