@@ -1,3 +1,16 @@
+/* Montserrat & Lato */
+.App {
+  width: 90%;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid var(--overlay-text-color);
+  background: var(--container-bg-color);
+}
+
 .completed {
   text-decoration: line-through;
 }

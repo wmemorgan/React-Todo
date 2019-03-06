@@ -1,3 +1,22 @@
+@import url('https://fonts.googleapis.com/css?family=Lato|Montserrat:400,500,600,700');
+
+/*--Basic color scheme--*/
+:root {
+  --dark-primary-color: #022140;
+  --default-primary-color: #265077;
+  --light-primary-color: #e4e5eb;
+  --text-primary-color: #FFFFFF;
+  --accent-color: #51a7f8;
+  --primary-bg-color: #FFFFFF;
+  --primary-text-color: #595959;
+  --emphasis-text-color: #212121;
+  --secondary-text-color: #1E4258;
+  --divider-color: var(--dark-primary-color);
+  --overlay-bg-color: #1E4258;
+  --overlay-text-color: #ccc;
+  --container-bg-color: #FCFCFC;
+}
+
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -52,7 +71,12 @@ table {
 body {  
 	margin: 0;
   padding: 0.4rem;
-	font-family: sans-serif;
+  font-family: Lato, Helvetica, Sans-Serif;
+  background: var(--light-primary-color);
 	font-size: 62.5%;
 	line-height: 1.4;
+}
+
+h1, h2, h3, h4 {
+	font-family: Montserrat, 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
