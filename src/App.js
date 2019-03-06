@@ -78,7 +78,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <ToDoList tasks={this.state.taskList}/> 
+        <ToDoList tasks={this.state.taskList} toggleComplete={this.toggleComplete}/> 
         <ToDoForm
           value={this.state.inputValue}
           onInputChange={this.inputChange}
