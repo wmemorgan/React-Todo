@@ -107,11 +107,14 @@ class App extends React.Component {
             addTask={this.addTask}
             clearCompletedTasks={this.clearCompletedTask}
           />
-          <ToDoList tasks={this.state.taskList} toggleComplete={this.toggleComplete} />
+          
           <ToDoSearch
             search={this.state.search}
             searchTask={this.searchTask}
           /> 
+
+          <ToDoList tasks={this.state.taskList} toggleComplete={this.toggleComplete} />
+
         </div>
       </div>
     );
