@@ -3,35 +3,43 @@ import React from 'react';
 import ToDoList from './components/TodoComponents/TodoList'
 import ToDoForm from './components/TodoComponents/TodoForm'
 
-const taskList = [
-  {
-    task: 'Organize Garage',
-    id: 1528817077286,
-    completed: false
-  },
-  {
-    task: 'Bake Cookies',
-    id: 1528817084358,
-    completed: true
-  }  
-]
+// const taskList = [
+//   {
+//     task: 'Organize Garage',
+//     id: 1528817077286,
+//     completed: false
+//   },
+//   {
+//     task: 'Bake Cookies',
+//     id: 1528817084358,
+//     completed: true
+//   }  
+// ]
 
 class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      taskList,
-      task: '',
-      id: '',
-      completed: false,
+      taskList : [
+        {
+          task: 'Organize Garage',
+          id: 1528817077286,
+          completed: false
+        },
+        {
+          task: 'Bake Cookies',
+          id: 1528817084358,
+          completed: true
+        }
+      ],
       inputValue: ''
     }
     //this.todoElement = React.createRef()
 
     //Add data to localStorage
-    localStorage.setItem('newTask', '')
-    console.log(`Initial localStorage.newTask from parent: ${JSON.stringify(localStorage.newTask)}`)
-    localStorage.setItem('taskList', taskList.map(task=>JSON.stringify(task)))
+    // localStorage.setItem('newTask', '')
+    // console.log(`Initial localStorage.newTask from parent: ${JSON.stringify(localStorage.newTask)}`)
+    localStorage.setItem('taskList', this.state.taskList.map(task=>JSON.stringify(task)))
     console.log(`Initial localStorage.taskList from parent:`, localStorage.taskList)
   }
 
@@ -40,15 +48,15 @@ class App extends React.Component {
     this.setState({
       inputValue: e.target.value
     }, () => {
-      localStorage.setItem('newTask', this.state.inputValue)
+      console.log('The latest inputValue: ',this.state.inputValue)
+      // localStorage.setItem('newTask', this.state.inputValue)
     })
   }
 
   addTask = e => {
     e.preventDefault()
-    console.log(`localStorage from parent: ${localStorage.newTask}`)
     let newTask = {
-      task: localStorage.newTask,
+      task: this.state.inputValue,
       id: new Date(),
       completed: false
     }
@@ -62,6 +70,13 @@ class App extends React.Component {
 
     // localStorage.setItem('taskList', this.state.taskList.map(task => JSON.stringify(task)))
     // console.log(`updated localStorage.taskList from parent:`, localStorage.taskList)
+  }
+
+  toggleComplete = (id) => {
+    console.log(id)
+    // this.setState(prevState => {
+    //   return { completed: prevState.completed === false ? true : false }
+    // })
   }
 
   clearCompletedTask = e => {
