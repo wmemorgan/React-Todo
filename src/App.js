@@ -2,6 +2,7 @@ import React from 'react';
 
 import ToDoList from './components/TodoComponents/TodoList'
 import ToDoForm from './components/TodoComponents/TodoForm'
+import ToDoSearch from './components/TodoComponents/TodoSearch'
 
 const taskList = [
   {
@@ -105,8 +106,11 @@ class App extends React.Component {
           enterTask={this.enterTask}
           addTask={this.addTask}
           clearCompletedTasks={this.clearCompletedTask}
+
+        />
+        <ToDoSearch
           search={this.state.search}
-          searchTask={this.searchTask}
+          searchTask={this.searchTask} 
         /> 
       </div>
     );
