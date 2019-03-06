@@ -100,17 +100,19 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <ToDoForm
-          inputValue={this.state.inputValue}
-          enterTask={this.enterTask}
-          addTask={this.addTask}
-          clearCompletedTasks={this.clearCompletedTask}
-        />
-        <ToDoList tasks={this.state.taskList} toggleComplete={this.toggleComplete} /> 
-        <ToDoSearch
-          search={this.state.search}
-          searchTask={this.searchTask} 
-        /> 
+        <div className="app-container">
+          <ToDoForm
+            inputValue={this.state.inputValue}
+            enterTask={this.enterTask}
+            addTask={this.addTask}
+            clearCompletedTasks={this.clearCompletedTask}
+          />
+          <ToDoList tasks={this.state.taskList} toggleComplete={this.toggleComplete} />
+          <ToDoSearch
+            search={this.state.search}
+            searchTask={this.searchTask}
+          /> 
+        </div>
       </div>
     );
   }
