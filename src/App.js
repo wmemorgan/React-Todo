@@ -26,6 +26,7 @@ class App extends React.Component {
       completed: false,
       inputValue: ''
     }
+    //this.todoElement = React.createRef()
 
     //Add data to localStorage
     localStorage.setItem('newTask', '')
@@ -63,24 +64,18 @@ class App extends React.Component {
     // console.log(`updated localStorage.taskList from parent:`, localStorage.taskList)
   }
 
-  toggleComplete = e => {
-    e.preventDefault()
-    console.log(e.target)
-    e.target.setState(prevState => {
-      return {completed: prevState.completed === false ? true : false}
-    })
-  }
-
   clearCompletedTask = e => {
     e.preventDefault()
     let clearedList = this.state.taskList.filter(task => task.completed === false)
     this.setState({taskList: [...clearedList]})
   }
 
+
+
   render() {
     return (
       <div className="App">
-        <ToDoList tasks={this.state.taskList} onToggle={this.toggleComplete}/> 
+        <ToDoList tasks={this.state.taskList}/> 
         <ToDoForm
           value={this.state.inputValue}
           onInputChange={this.inputChange}
