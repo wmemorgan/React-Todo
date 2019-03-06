@@ -10,7 +10,22 @@
 
 /* Global element styles */
 .btn {
+  color: var(--text-primary-color);
+  background: var(--accent-color);
+  padding: 5px;
+  border: 0;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.12rem; 
   cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .btn {
+    font-size: .9rem;
+    padding: 10px;
+  }
 }
 
 .App {
@@ -79,12 +94,15 @@
 }
 
 .todo-form input {
-  padding: 5px;
+  padding: 5px 10px;
   font-size: 1rem;
 }
 
 .todo-form .btn-clear {
+  width: 90%;
+  justify-self: center;
   grid-column: span 2;
+  background: red;
 }
 
 @media (max-width: 600px) {
@@ -127,8 +145,6 @@
   list-style-type: decimal;
   background: var(--container-bg-color);
 }
-
-
 
 .todo {
   font-size: 1.2rem;
