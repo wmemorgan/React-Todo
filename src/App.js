@@ -84,13 +84,16 @@ class App extends React.Component {
     e.preventDefault()
     let searchString = e.target.value.toLowerCase()
     console.log(`e.target.value: `, searchString)
-    let filteredTaskList = this.state.taskList.filter(task => task.task.toLowerCase().includes(searchString))
-    console.log(`search value before: `, this.state.search)
-    this.setState({
+    let filteredTaskList = this.state.taskList.map(task => {
+      if (!task.task.toLowerCase().includes(searchString)) {
+        task.filtered = true
+      } else { task.filtered = false }
+      return task
+    })
+    this.setState({ 
       taskList: filteredTaskList,
       search: searchString
-    })
-    console.log(`search value after: `, this.state.search)
+     })
   }
 
   render() {
