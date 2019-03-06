@@ -6,7 +6,7 @@ const ToDoList = (props) => {
   const { tasks, toggleComplete } = props
   return (
     <div className="todo-list">
-      <ol className="todo-list-container">
+      <ol className="list-container">
         {tasks.map(task => (
           <ToDo task={task} key={task.id} toggleComplete={toggleComplete} />
         ))}
