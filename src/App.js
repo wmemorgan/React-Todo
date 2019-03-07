@@ -43,18 +43,25 @@ class App extends React.Component {
 
   addTask = e => {
     e.preventDefault()
-    let date = new Date()
-    let timestamp = date.getTime()
-    let newTask = {
-      task: this.state.inputValue,
-      id: timestamp,
-      completed: false,
-      filtered: false
-    }
+    // let timestamp = new Date.now()
+    // let newTask = {
+    //   task: this.state.inputValue,
+    //   id: timestamp,
+    //   completed: false,
+    //   filtered: false
+    // }
 
     this.setState(prevState => {
       return {
-        taskList: [...prevState.taskList, newTask],
+        taskList: [
+          ...prevState.taskList, 
+          {
+            task: prevState.inputValue,
+            id: Date.now(),
+            completed: false,
+            filtered: false
+          }
+        ],
         inputValue: '',
       }
     },
