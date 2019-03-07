@@ -43,14 +43,6 @@ class App extends React.Component {
 
   addTask = e => {
     e.preventDefault()
-    // let timestamp = new Date.now()
-    // let newTask = {
-    //   task: this.state.inputValue,
-    //   id: timestamp,
-    //   completed: false,
-    //   filtered: false
-    // }
-
     this.setState(prevState => {
       return {
         taskList: [
@@ -82,8 +74,7 @@ class App extends React.Component {
     this.setState({taskList: updateTaskList})
   }
 
-  clearCompletedTask = e => {
-    e.preventDefault()
+  clearCompletedTask = () => {
     let clearedList = this.state.taskList.filter(task => task.completed === false)
     this.setState({taskList: [...clearedList]})
   }
