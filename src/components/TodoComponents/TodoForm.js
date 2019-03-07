@@ -8,8 +8,9 @@ const ToDoForm = props => {
       <form onSubmit={addTask} className="todo-form">
         <input name="task" onChange={enterTask} value={inputValue} placeholder="Enter task" />
         <button type="submit" className="btn btn-add" >Add Task</button>
-        <button className="btn btn-clear" onClick={clearCompletedTasks}>Clear Completed</button>
+
       </form>
+      <button className="btn btn-clear" onClick={clearCompletedTasks}>Clear Completed</button>
     </div>
 
   )

@@ -75,8 +75,11 @@ class App extends React.Component {
   }
 
   clearCompletedTask = () => {
-    let clearedList = this.state.taskList.filter(task => task.completed === false)
-    this.setState({taskList: [...clearedList]})
+    this.setState(prevState => {
+      return {
+        taskList: prevState.taskList.filter(task => !task.completed)
+      }
+    })
   }
 
   searchTask = e => {

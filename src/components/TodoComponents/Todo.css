@@ -99,7 +99,7 @@
   font-size: 1rem;
 }
 
-.todo-form .btn-clear {
+.todo-form-container .btn-clear {
   width: 60%;
   justify-self: center;
   grid-column: span 2;
