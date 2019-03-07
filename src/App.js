@@ -94,17 +94,31 @@ class App extends React.Component {
   searchTask = e => {
     e.preventDefault()
     let searchString = e.target.value.toLowerCase()
-    console.log(`e.target.value: `, searchString)
-    let filteredTaskList = this.state.taskList.map(task => {
-      if (!task.task.toLowerCase().includes(searchString)) {
-        task.filtered = true
-      } else { task.filtered = false }
-      return task
-    })
-    this.setState({ 
-      taskList: filteredTaskList,
-      search: searchString
-     })
+    // console.log(`e.target.value: `, searchString)
+    this.setState(prevState => {
+      let filteredTaskList = prevState.taskList.map(task => {
+        if (!task.task.toLowerCase().includes(searchString)) {
+          return {
+            task: task.task,
+            id: task.id,
+            completed: task.completed,
+            filtered: true
+          }
+        } else {
+          return {
+            task: task.task,
+            id: task.id,
+            completed: task.completed,
+            filtered: false
+          }
+        }
+      })
+
+      return {
+        taskList: filteredTaskList,
+        search: searchString
+      }
+    })    
   }
 
   render() {
@@ -117,14 +131,11 @@ class App extends React.Component {
             addTask={this.addTask}
             clearCompletedTasks={this.clearCompletedTask}
           />
-          
           <ToDoSearch
             search={this.state.search}
             searchTask={this.searchTask}
           /> 
-
           <ToDoList tasks={this.state.taskList} toggleComplete={this.toggleComplete} />
-
         </div>
       </div>
     );
