@@ -87,7 +87,7 @@
   width: 100%;
   display: grid;
   grid-template-columns: 2fr 1fr;
-  grid-gap: 1rem;
+  grid-gap: 1.5rem;
 }
 
 .todo-form * {
@@ -99,34 +99,45 @@
   font-size: 1rem;
 }
 
+.todo-form .btn-add {
+  /* width: 100%; */
+  max-width: 150px;
+}
+
 .todo-form-container .btn-clear {
   width: 60%;
+  max-width: 200px;
   justify-self: center;
   grid-column: span 2;
   background: red;
 }
 
 @media (max-width: 600px) {
-  .todo-form {
+  .todo-form-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 0;
   }
 
+  .todo-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    order: 2
+  }
+
   .todo-form * {
     margin: 10px 0;
   }
 
-  .todo-form input {
-    order: 2;
-  }
   .todo-form .btn-add {
     width: 80%;
-    order: 3;
   }
-  .todo-form .btn-clear {
+  .todo-form-container .btn-clear {
     width: 80%;
+    max-width: 170px;
     order: 1;
   }
 
