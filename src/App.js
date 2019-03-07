@@ -64,14 +64,23 @@ class App extends React.Component {
     )
   }
 
-  toggleComplete = (id) => {
-    let updateTaskList = this.state.taskList.map(task => {
-      if (task.id === id ) {
-        task.completed = task.completed === false ? true : false
+  toggleComplete = id => {
+    this.setState(prevState => {
+      return {
+        taskList: prevState.taskList.map(task => {
+          if (task.id === id) {
+            return {
+              task: task.task,
+              id: task.id,
+              completed: !task.completed,
+              filtered: task.filtered
+            }
+          } else {
+            return task
+          }
+        })
       }
-      return task
     })
-    this.setState({taskList: updateTaskList})
   }
 
   clearCompletedTask = () => {
