@@ -4,7 +4,7 @@ const ToDoForm = props => {
   const { inputValue, addTask, enterTask, clearCompletedTasks } = props
   return (
     <div className="todo-form-container">
-      <h2>To Do List</h2>
+      <h2>Get Stuff Done</h2>
       <form onSubmit={addTask} className="todo-form">
         <input name="task" onChange={enterTask} value={inputValue} placeholder="Enter task" />
         <button type="submit" className="btn btn-add" >Add Task</button>
