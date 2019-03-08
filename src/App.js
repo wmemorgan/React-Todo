@@ -29,6 +29,7 @@ class App extends React.Component {
     let ref = firebase.database().ref('/')
     ref.on('value', snapshot => {
       const state = snapshot.val()
+      console.log(`downloaded data is: `, state)
       this.setState(state)
     })
     console.log(`DATA RECEIVED`)
