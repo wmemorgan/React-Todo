@@ -1,37 +1,52 @@
 import React from 'react';
+import firebase from './config/firebase'
 
 import ToDoList from './components/TodoComponents/TodoList'
 import ToDoForm from './components/TodoComponents/TodoForm'
 import ToDoSearch from './components/TodoComponents/TodoSearch'
 
-const taskList = [
-  {
-    task: 'Organize Garage',
-    id: 1528817077286,
-    completed: false,
-    filtered: false
-  },
-  {
-    task: 'Bake Cookies',
-    id: 1528817084358,
-    completed: true,
-    filtered: false
-  }
-]
+// const taskList = [
+//   {
+//     task: 'Organize Garage',
+//     id: 1528817077286,
+//     completed: false,
+//     filtered: false
+//   },
+//   {
+//     task: 'Bake Cookies',
+//     id: 1528817084358,
+//     completed: true,
+//     filtered: false
+//   }
+// ]
 
 class App extends React.Component {
   constructor() {
     super()
-    //Initialize localStorage
-    localStorage.setItem('taskList', JSON.stringify(taskList))
-    console.log(`Initial localStorage.taskList from parent:`, JSON.parse(localStorage.taskList))
+    // //Initialize localStorage
+    // localStorage.setItem('taskList', JSON.stringify(taskList))
+    // console.log(`Initial localStorage.taskList from parent:`, JSON.parse(localStorage.taskList))
     //Initialize state
     this.state = {
-      taskList: JSON.parse(localStorage.taskList),
+      taskList: [],
       inputValue: '',
       search: ''
     }
     console.log('Intial state: ', this.state)
+  }
+
+  writeUserData = () => {
+    firebase.database().ref('/').set(this.state)
+    console.log(`DATA SAVED`)
+  }
+
+  getUserData = () => {
+    let ref = firebase.database().ref('/')
+    ref.on('value', snapshot => {
+      const state = snapshot.val()
+      this.setState(state)
+    })
+    console.log(`DATA RECEIVED`)
   }
 
   enterTask = e => {
@@ -119,6 +134,18 @@ class App extends React.Component {
         search: searchString
       }
     })    
+  }
+
+  componentDidMount() {
+    this.getUserData()
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    // check on previous state
+    // only write when it's different with the new state
+    if (prevState !== this.state) {
+      this.writeUserData()
+    }
   }
 
   render() {
