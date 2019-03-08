@@ -1,5 +1,5 @@
 import React from 'react';
-import { firebase, auth } from './firebase/firebase'
+import { firebase } from './firebase/firebase'
 
 import ToDoList from './components/TodoComponents/TodoList'
 import ToDoForm from './components/TodoComponents/TodoForm'
