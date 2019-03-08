@@ -1,5 +1,3 @@
-import firebase from 'firebase'
-
 const config = {
   apiKey: "AIzaSyBZ43YlGRw_BdCM8FmYHnNgH-F7TFYhF5o",
   authDomain: "wme-react-todo.firebaseapp.com",
@@ -8,6 +6,4 @@ const config = {
   storageBucket: "wme-react-todo.appspot.com",
 }
 
-firebase.initializeApp(config)
-
-export default firebase
+export default config
