@@ -5,21 +5,6 @@ import ToDoList from './components/TodoComponents/TodoList'
 import ToDoForm from './components/TodoComponents/TodoForm'
 import ToDoSearch from './components/TodoComponents/TodoSearch'
 
-// const taskList = [
-//   {
-//     task: 'Organize Garage',
-//     id: 1528817077286,
-//     completed: false,
-//     filtered: false
-//   },
-//   {
-//     task: 'Bake Cookies',
-//     id: 1528817084358,
-//     completed: true,
-//     filtered: false
-//   }
-// ]
-
 class App extends React.Component {
   constructor() {
     super()
